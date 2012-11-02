@@ -13,11 +13,17 @@
 		C39349CC164412C9006E6FBD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C39349CA164412C9006E6FBD /* InfoPlist.strings */; };
 		C39349CE164412C9006E6FBD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C39349CD164412C9006E6FBD /* main.m */; };
 		C39349D2164412C9006E6FBD /* BDKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C39349D1164412C9006E6FBD /* BDKAppDelegate.m */; };
-		C39349D4164412C9006E6FBD /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C39349D3164412C9006E6FBD /* Default.png */; };
-		C39349D6164412C9006E6FBD /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C39349D5164412C9006E6FBD /* Default@2x.png */; };
-		C39349D8164412C9006E6FBD /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C39349D7164412C9006E6FBD /* Default-568h@2x.png */; };
 		C39349DB164412C9006E6FBD /* BDKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C39349DA164412C9006E6FBD /* BDKViewController.m */; };
-		C39349DE164412C9006E6FBD /* BDKViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C39349DC164412C9006E6FBD /* BDKViewController.xib */; };
+		C39349E6164412E1006E6FBD /* BDKNotifyHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = C39349E5164412E1006E6FBD /* BDKNotifyHUD.m */; };
+		C39349EF16441F7A006E6FBD /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C39349EE16441F7A006E6FBD /* Default-568h@2x.png */; };
+		C39349F116441F7C006E6FBD /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C39349F016441F7C006E6FBD /* Default@2x.png */; };
+		C39349F316441F7E006E6FBD /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C39349F216441F7E006E6FBD /* Default.png */; };
+		C39349F516442054006E6FBD /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C39349F416442054006E6FBD /* Icon.png */; };
+		C39349F716442057006E6FBD /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C39349F616442057006E6FBD /* Icon@2x.png */; };
+		C39349FE164438E0006E6FBD /* Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = C39349FA164438E0006E6FBD /* Checkmark.png */; };
+		C39349FF164438E0006E6FBD /* Checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C39349FB164438E0006E6FBD /* Checkmark@2x.png */; };
+		C3934A00164438E0006E6FBD /* Star.png in Resources */ = {isa = PBXBuildFile; fileRef = C39349FC164438E0006E6FBD /* Star.png */; };
+		C3934A01164438E0006E6FBD /* Star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C39349FD164438E0006E6FBD /* Star@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,12 +37,19 @@
 		C39349CF164412C9006E6FBD /* BDKNotifyHUD-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDKNotifyHUD-Prefix.pch"; sourceTree = "<group>"; };
 		C39349D0164412C9006E6FBD /* BDKAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDKAppDelegate.h; sourceTree = "<group>"; };
 		C39349D1164412C9006E6FBD /* BDKAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDKAppDelegate.m; sourceTree = "<group>"; };
-		C39349D3164412C9006E6FBD /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		C39349D5164412C9006E6FBD /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		C39349D7164412C9006E6FBD /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		C39349D9164412C9006E6FBD /* BDKViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDKViewController.h; sourceTree = "<group>"; };
 		C39349DA164412C9006E6FBD /* BDKViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDKViewController.m; sourceTree = "<group>"; };
-		C39349DD164412C9006E6FBD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BDKViewController.xib; sourceTree = "<group>"; };
+		C39349E4164412E1006E6FBD /* BDKNotifyHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKNotifyHUD.h; sourceTree = "<group>"; };
+		C39349E5164412E1006E6FBD /* BDKNotifyHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKNotifyHUD.m; sourceTree = "<group>"; };
+		C39349EE16441F7A006E6FBD /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		C39349F016441F7C006E6FBD /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		C39349F216441F7E006E6FBD /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		C39349F416442054006E6FBD /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		C39349F616442057006E6FBD /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		C39349FA164438E0006E6FBD /* Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Checkmark.png; path = Images/Checkmark.png; sourceTree = "<group>"; };
+		C39349FB164438E0006E6FBD /* Checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Checkmark@2x.png"; path = "Images/Checkmark@2x.png"; sourceTree = "<group>"; };
+		C39349FC164438E0006E6FBD /* Star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Star.png; path = Images/Star.png; sourceTree = "<group>"; };
+		C39349FD164438E0006E6FBD /* Star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Star@2x.png"; path = "Images/Star@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +69,11 @@
 		C39349B2164412C9006E6FBD = {
 			isa = PBXGroup;
 			children = (
+				C39349F616442057006E6FBD /* Icon@2x.png */,
+				C39349F416442054006E6FBD /* Icon.png */,
+				C39349F216441F7E006E6FBD /* Default.png */,
+				C39349F016441F7C006E6FBD /* Default@2x.png */,
+				C39349EE16441F7A006E6FBD /* Default-568h@2x.png */,
 				C39349C7164412C9006E6FBD /* BDKNotifyHUD */,
 				C39349C0164412C9006E6FBD /* Frameworks */,
 				C39349BE164412C9006E6FBD /* Products */,
@@ -83,11 +101,16 @@
 		C39349C7164412C9006E6FBD /* BDKNotifyHUD */ = {
 			isa = PBXGroup;
 			children = (
+				C39349FA164438E0006E6FBD /* Checkmark.png */,
+				C39349FB164438E0006E6FBD /* Checkmark@2x.png */,
+				C39349FC164438E0006E6FBD /* Star.png */,
+				C39349FD164438E0006E6FBD /* Star@2x.png */,
 				C39349D0164412C9006E6FBD /* BDKAppDelegate.h */,
 				C39349D1164412C9006E6FBD /* BDKAppDelegate.m */,
+				C39349E4164412E1006E6FBD /* BDKNotifyHUD.h */,
+				C39349E5164412E1006E6FBD /* BDKNotifyHUD.m */,
 				C39349D9164412C9006E6FBD /* BDKViewController.h */,
 				C39349DA164412C9006E6FBD /* BDKViewController.m */,
-				C39349DC164412C9006E6FBD /* BDKViewController.xib */,
 				C39349C8164412C9006E6FBD /* Supporting Files */,
 			);
 			path = BDKNotifyHUD;
@@ -100,9 +123,6 @@
 				C39349CA164412C9006E6FBD /* InfoPlist.strings */,
 				C39349CD164412C9006E6FBD /* main.m */,
 				C39349CF164412C9006E6FBD /* BDKNotifyHUD-Prefix.pch */,
-				C39349D3164412C9006E6FBD /* Default.png */,
-				C39349D5164412C9006E6FBD /* Default@2x.png */,
-				C39349D7164412C9006E6FBD /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -160,10 +180,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				C39349CC164412C9006E6FBD /* InfoPlist.strings in Resources */,
-				C39349D4164412C9006E6FBD /* Default.png in Resources */,
-				C39349D6164412C9006E6FBD /* Default@2x.png in Resources */,
-				C39349D8164412C9006E6FBD /* Default-568h@2x.png in Resources */,
-				C39349DE164412C9006E6FBD /* BDKViewController.xib in Resources */,
+				C39349EF16441F7A006E6FBD /* Default-568h@2x.png in Resources */,
+				C39349F116441F7C006E6FBD /* Default@2x.png in Resources */,
+				C39349F316441F7E006E6FBD /* Default.png in Resources */,
+				C39349F516442054006E6FBD /* Icon.png in Resources */,
+				C39349F716442057006E6FBD /* Icon@2x.png in Resources */,
+				C39349FE164438E0006E6FBD /* Checkmark.png in Resources */,
+				C39349FF164438E0006E6FBD /* Checkmark@2x.png in Resources */,
+				C3934A00164438E0006E6FBD /* Star.png in Resources */,
+				C3934A01164438E0006E6FBD /* Star@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,6 +202,7 @@
 				C39349CE164412C9006E6FBD /* main.m in Sources */,
 				C39349D2164412C9006E6FBD /* BDKAppDelegate.m in Sources */,
 				C39349DB164412C9006E6FBD /* BDKViewController.m in Sources */,
+				C39349E6164412E1006E6FBD /* BDKNotifyHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,14 +215,6 @@
 				C39349CB164412C9006E6FBD /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		C39349DC164412C9006E6FBD /* BDKViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C39349DD164412C9006E6FBD /* en */,
-			);
-			name = BDKViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -254,6 +272,7 @@
 		C39349E2164412C9006E6FBD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMPRESS_PNG_FILES = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BDKNotifyHUD/BDKNotifyHUD-Prefix.pch";
 				INFOPLIST_FILE = "BDKNotifyHUD/BDKNotifyHUD-Info.plist";
@@ -265,6 +284,7 @@
 		C39349E3164412C9006E6FBD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMPRESS_PNG_FILES = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BDKNotifyHUD/BDKNotifyHUD-Prefix.pch";
 				INFOPLIST_FILE = "BDKNotifyHUD/BDKNotifyHUD-Info.plist";
