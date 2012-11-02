@@ -51,18 +51,20 @@
         self.borderColor = [UIColor clearColor];
         self.destinationOpacity = kBDKNotifyHUDDefaultOpacity;
         self.currentOpacity = 0.0f;
+        [self addSubview:self.backgroundView];
+        [self addSubview:self.imageView];
+        [self addSubview:self.textLabel];
+        [self recalculateHeight];
     }
     return self;
 }
 
 - (void)presentWithDuration:(CGFloat)duration speed:(CGFloat)speed inView:(UIView *)view completion:(void (^)(void))completion {
-    NSLog(@"Animating with speed %.0f.", speed);
-    
+    self.isAnimating = YES;
     [UIView animateWithDuration:speed animations:^{
         [self setCurrentOpacity:self.destinationOpacity];
     } completion:^(BOOL finished) {
-        NSLog(@"Notification view appeared.");
-        [self fadeAfter:duration speed:speed completion:completion];
+        if (finished) [self fadeAfter:duration speed:speed completion:completion];
     }];
 }
 
@@ -71,8 +73,10 @@
         [UIView animateWithDuration:speed animations:^{
             [self setCurrentOpacity:0.0];
         } completion:^(BOOL finished) {
-            NSLog(@"Notification view disappeared.");
-            if (completion != nil) completion();
+            if (finished) {
+                self.isAnimating = NO;
+                if (completion != nil) completion();
+            }
         }];
     } afterDelay:duration];
 }
@@ -90,9 +94,10 @@
 }
 
 - (void)setText:(NSString *)text {
-    if (_textLabel != nil) self.textLabel.text = text;
-    [self adjustTextLabel:self.textLabel];
-    NSLog(@"Text label max Y now %.0f.", CGRectGetMaxY(self.textLabel.frame));
+    if (_textLabel != nil) {
+        self.textLabel.text = text;
+        [self adjustTextLabel:self.textLabel];
+    }
     _text = text;
 }
 
@@ -102,10 +107,9 @@
 }
 
 - (void)setCurrentOpacity:(CGFloat)currentOpacity {
-    if (_backgroundView != nil) self.backgroundView.alpha = currentOpacity;
-    if (_imageView != nil) self.imageView.alpha = currentOpacity;
-    if (_textLabel != nil) self.textLabel.alpha = currentOpacity;
-    NSLog(@"Setting alpha to %.1f.", currentOpacity);
+    self.imageView.alpha = currentOpacity > 0 ? 1.0f : 0.0f;
+    self.textLabel.alpha = currentOpacity > 0 ? 1.0f : 0.0f;
+    self.backgroundView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:currentOpacity];
     _currentOpacity = currentOpacity;
 }
 
@@ -117,7 +121,7 @@
     _backgroundView = [[UIView alloc] initWithFrame:self.bounds];
     _backgroundView.layer.cornerRadius = self.roundness;
     _backgroundView.layer.borderWidth = 1.0f;
-    _backgroundView.backgroundColor = [UIColor blackColor];
+    _backgroundView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.0f];
     _backgroundView.layer.borderColor = [self.borderColor CGColor];
     
     return _backgroundView;
@@ -135,6 +139,7 @@
         frame.size = self.image.size;
         frame.origin = CGPointMake((self.backgroundView.frame.size.width - frame.size.width) / 2, kBDKNotifyHUDDefaultPadding);
         _imageView.frame = frame;
+        _imageView.alpha = 0.0f;
     }
     
     return _imageView;
@@ -149,11 +154,13 @@
     _textLabel = [[UILabel alloc] initWithFrame:frame];
     _textLabel.font = [UIFont boldSystemFontOfSize:18];
     _textLabel.textColor = [UIColor whiteColor];
+    _textLabel.alpha = 0.0f;
     _textLabel.backgroundColor = [UIColor clearColor];
     _textLabel.textAlignment = NSTextAlignmentCenter;
     _textLabel.numberOfLines = 0;
     if (self.text != nil) _textLabel.text = self.text;
     [self adjustTextLabel:_textLabel];
+    [self recalculateHeight];
     
     return _textLabel;
 }
@@ -161,22 +168,15 @@
 #pragma mark - UIView
 
 - (void)layoutSubviews {
-    if (self.backgroundView.superview) [self.backgroundView removeFromSuperview];
-    if (self.imageView.superview) [self.imageView removeFromSuperview];
-    if (self.textLabel.superview) [self.textLabel removeFromSuperview];
-    self.backgroundView = nil;
-    self.imageView = nil;
-    self.textLabel = nil;
-    
-    [self addSubview:self.backgroundView];
-    [self addSubview:self.imageView];
-    [self addSubview:self.textLabel];
     [self recalculateHeight];
 }
 
 - (void)adjustTextLabel:(UILabel *)label {
-    [label sizeToFit];
     CGRect frame = _textLabel.frame;
+    frame.size.width = self.backgroundView.frame.size.width;
+    _textLabel.frame = frame;
+    [label sizeToFit];
+    frame = _textLabel.frame;
     frame.origin.x = floorf((self.backgroundView.frame.size.width - _textLabel.frame.size.width) / 2);
     _textLabel.frame = frame;
 }

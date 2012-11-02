@@ -10,6 +10,8 @@
 @property (nonatomic) UIImage *image;
 @property (nonatomic) CGFloat roundness;
 @property (nonatomic) BOOL bordered;
+@property (nonatomic) BOOL isAnimating;
+
 @property (strong, nonatomic) UIColor *borderColor;
 @property (strong, nonatomic) NSString *text;
 

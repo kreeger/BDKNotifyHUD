@@ -27,7 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C39349BD164412C9006E6FBD /* BDKNotifyHUD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BDKNotifyHUD.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C39349BD164412C9006E6FBD /* NotifyHUD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotifyHUD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C39349C1164412C9006E6FBD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C39349C3164412C9006E6FBD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C39349C5164412C9006E6FBD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -83,7 +83,7 @@
 		C39349BE164412C9006E6FBD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C39349BD164412C9006E6FBD /* BDKNotifyHUD.app */,
+				C39349BD164412C9006E6FBD /* NotifyHUD.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -144,7 +144,7 @@
 			);
 			name = BDKNotifyHUD;
 			productName = BDKNotifyHUD;
-			productReference = C39349BD164412C9006E6FBD /* BDKNotifyHUD.app */;
+			productReference = C39349BD164412C9006E6FBD /* NotifyHUD.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -276,7 +276,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BDKNotifyHUD/BDKNotifyHUD-Prefix.pch";
 				INFOPLIST_FILE = "BDKNotifyHUD/BDKNotifyHUD-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = NotifyHUD;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -288,7 +289,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BDKNotifyHUD/BDKNotifyHUD-Prefix.pch";
 				INFOPLIST_FILE = "BDKNotifyHUD/BDKNotifyHUD-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = NotifyHUD;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
