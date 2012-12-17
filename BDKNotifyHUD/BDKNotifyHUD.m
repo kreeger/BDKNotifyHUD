@@ -28,6 +28,7 @@
 - (void)setupView;
 - (void)recalculateHeight;
 - (void)adjustTextLabel:(UILabel *)label;
+- (UIView *)configureViewForCentering:(UIView *)view;
 - (void)fadeAfter:(CGFloat)duration speed:(CGFloat)speed completion:(void (^)(void))completion;
 
 @end
@@ -50,7 +51,7 @@
 
 - (id)initWithView:(UIView *)view text:(NSString *)text {
     if ((self = [self initWithFrame:[self.class defaultFrame]])) {
-        self.iconView = view;
+        self.iconView = [self configureViewForCentering:view];
         self.text = text;
         [self setupView];
     }
@@ -121,15 +122,11 @@
 
 - (void)setImage:(UIImage *)image {
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
-    imageView.backgroundColor = [UIColor clearColor];
-    imageView.contentMode = UIViewContentModeCenter;
     imageView.image = image;
     CGRect frame = imageView.frame;
     frame.size = image.size;
-    frame.origin = CGPointMake((self.backgroundView.frame.size.width - frame.size.width) / 2, kBDKNotifyHUDDefaultPadding);
     imageView.frame = frame;
-    imageView.alpha = 0.0f;
-    
+    imageView = [self configureViewForCentering:imageView];
     _iconView = imageView;
 }
 
@@ -178,6 +175,16 @@
 
 - (void)layoutSubviews {
     [self recalculateHeight];
+}
+
+- (UIView *)configureViewForCentering:(UIView *)view {
+    view.backgroundColor = [UIColor clearColor];
+    view.contentMode = UIViewContentModeCenter;
+    CGRect frame = view.frame;
+    frame.origin = CGPointMake((self.backgroundView.frame.size.width - frame.size.width) / 2, kBDKNotifyHUDDefaultPadding);
+    view.frame = frame;
+    view.alpha = 0.0f;
+    return view;
 }
 
 - (void)adjustTextLabel:(UILabel *)label {
