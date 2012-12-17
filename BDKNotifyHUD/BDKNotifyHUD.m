@@ -126,7 +126,7 @@
     CGRect frame = imageView.frame;
     frame.size = image.size;
     imageView.frame = frame;
-    imageView = [self configureViewForCentering:imageView];
+    imageView = (UIImageView *)[self configureViewForCentering:imageView];
     _iconView = imageView;
 }
 
