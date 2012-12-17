@@ -7,9 +7,9 @@ Displays a translucent-ish modal over with an image and a label; largely customi
 ## Usage
 
 ``` objective-c
-// Create the HUD object
-BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:@"Checkmark.png"]
-                                                text:@"This is a checkmark!"];
+// Create the HUD object; view can be a UIImageView, an icon... you name it
+BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithView:[UIView someCustomView]
+                                               text:@"This is a checkmark!"];
 hud.center = CGPointMake(self.view.center.x, self.view.center.y - 20);
 
 // Animate it, then get rid of it. These settings last 1 second, takes a half-second fade.

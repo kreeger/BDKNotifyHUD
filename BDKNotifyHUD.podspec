@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name      = 'BDKNotifyHUD'
-  s.version   = '1.0.0'
+  s.version   = '1.1.0'
   s.platform  = :ios
   s.summary   = 'An animated UIView for displaying a temporary "bezel" notification, mid-screen.'
   s.description   = 'An animated UIView for displaying a temporary "bezel" notification, mid-screen.'
@@ -18,7 +18,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     LICENSE
   }
   s.author    = { 'Benjamin Kreeger' =>  'http://ben.kree.gr/' }
-  s.source    = { :git => 'https://github.com/kreeger/BDKNotifyHUD.git', :tag => 'v1.0.0' }
+  s.source    = { :git => 'https://github.com/kreeger/BDKNotifyHUD.git', :tag => 'v1.1.0' }
   s.source_files  = 'BDKNotifyHUD/BDKNotifyHUD.{h,m}'
   s.frameworks    = 'QuartzCore'
   s.requires_arc = true

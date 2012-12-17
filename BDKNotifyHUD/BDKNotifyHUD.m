@@ -1,4 +1,5 @@
 #import "BDKNotifyHUD.h"
+
 #import <QuartzCore/QuartzCore.h>
 
 #define kBDKNotifyHUDDefaultRoundness    10.0f
@@ -22,9 +23,9 @@
 @interface BDKNotifyHUD ()
 
 @property (strong, nonatomic) UIView *backgroundView;
-@property (strong, nonatomic) UIImageView *imageView;
 @property (strong, nonatomic) UILabel *textLabel;
 
+- (void)setupView;
 - (void)recalculateHeight;
 - (void)adjustTextLabel:(UILabel *)label;
 - (void)fadeAfter:(CGFloat)duration speed:(CGFloat)speed completion:(void (^)(void))completion;
@@ -35,6 +36,10 @@
 
 #pragma mark - Lifecycle
 
++ (id)notifyHUDWithView:(UIView *)view text:(NSString *)text {
+    return [[self alloc] initWithView:view text:text];
+}
+
 + (id)notifyHUDWithImage:(UIImage *)image text:(NSString *)text {
     return [[self alloc] initWithImage:image text:text];
 }
@@ -43,20 +48,33 @@
     return CGRectMake(0, 0, kBDKNotifyHUDDefaultWidth, kBDKNotifyHUDDefaultHeight);
 }
 
-- (id)initWithImage:(UIImage *)image text:(NSString *)text {
+- (id)initWithView:(UIView *)view text:(NSString *)text {
     if ((self = [self initWithFrame:[self.class defaultFrame]])) {
-        self.image = image;
+        self.iconView = view;
         self.text = text;
-        self.roundness = kBDKNotifyHUDDefaultRoundness;
-        self.borderColor = [UIColor clearColor];
-        self.destinationOpacity = kBDKNotifyHUDDefaultOpacity;
-        self.currentOpacity = 0.0f;
-        [self addSubview:self.backgroundView];
-        [self addSubview:self.imageView];
-        [self addSubview:self.textLabel];
-        [self recalculateHeight];
+        [self setupView];
     }
     return self;
+}
+
+- (id)initWithImage:(UIImage *)image text:(NSString *)text {
+    if ((self = [self initWithFrame:[self.class defaultFrame]])) {
+        [self setImage:image];
+        self.text = text;
+        [self setupView];
+    }
+    return self;
+}
+
+- (void)setupView {
+    self.roundness = kBDKNotifyHUDDefaultRoundness;
+    self.borderColor = [UIColor clearColor];
+    self.destinationOpacity = kBDKNotifyHUDDefaultOpacity;
+    self.currentOpacity = 0.0f;
+    [self addSubview:self.backgroundView];
+    [self addSubview:self.iconView];
+    [self addSubview:self.textLabel];
+    [self recalculateHeight];
 }
 
 - (void)presentWithDuration:(CGFloat)duration speed:(CGFloat)speed inView:(UIView *)view completion:(void (^)(void))completion {
@@ -102,12 +120,21 @@
 }
 
 - (void)setImage:(UIImage *)image {
-    if (_imageView != nil) self.imageView.image = image;
-    _image = image;
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    imageView.backgroundColor = [UIColor clearColor];
+    imageView.contentMode = UIViewContentModeCenter;
+    imageView.image = image;
+    CGRect frame = imageView.frame;
+    frame.size = image.size;
+    frame.origin = CGPointMake((self.backgroundView.frame.size.width - frame.size.width) / 2, kBDKNotifyHUDDefaultPadding);
+    imageView.frame = frame;
+    imageView.alpha = 0.0f;
+    
+    _iconView = imageView;
 }
 
 - (void)setCurrentOpacity:(CGFloat)currentOpacity {
-    self.imageView.alpha = currentOpacity > 0 ? 1.0f : 0.0f;
+    self.iconView.alpha = currentOpacity > 0 ? 1.0f : 0.0f;
     self.textLabel.alpha = currentOpacity > 0 ? 1.0f : 0.0f;
     self.backgroundView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:currentOpacity];
     _currentOpacity = currentOpacity;
@@ -127,28 +154,10 @@
     return _backgroundView;
 }
 
-- (UIImageView *)imageView {
-    if (_imageView != nil) return _imageView;
-    
-    _imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
-    _imageView.backgroundColor = [UIColor clearColor];
-    _imageView.contentMode = UIViewContentModeCenter;
-    if (self.image != nil) { 
-        _imageView.image = self.image;
-        CGRect frame = _imageView.frame;
-        frame.size = self.image.size;
-        frame.origin = CGPointMake((self.backgroundView.frame.size.width - frame.size.width) / 2, kBDKNotifyHUDDefaultPadding);
-        _imageView.frame = frame;
-        _imageView.alpha = 0.0f;
-    }
-    
-    return _imageView;
-}
-
 - (UILabel *)textLabel {
     if (_textLabel != nil) return _textLabel;
     
-    CGRect frame = CGRectMake(0, floorf(CGRectGetMaxY(self.imageView.frame) + kBDKNotifyHUDDefaultInnerPadding),
+    CGRect frame = CGRectMake(0, floorf(CGRectGetMaxY(self.iconView.frame) + kBDKNotifyHUDDefaultInnerPadding),
                               floorf(self.backgroundView.frame.size.width),
                               floorf(self.backgroundView.frame.size.height / 2.0f));
     _textLabel = [[UILabel alloc] initWithFrame:frame];
