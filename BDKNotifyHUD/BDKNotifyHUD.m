@@ -7,19 +7,6 @@
 #define kBDKNotifyHUDDefaultPadding      10.0f
 #define kBDKNotifyHUDDefaultInnerPadding 6.0f
 
-@implementation NSObject (PerformBlockAfterDelay)
-
-- (void)performBlock:(void (^)(void))block afterDelay:(NSTimeInterval)delay {
-    block = [block copy];
-    [self performSelector:@selector(fireBlockAfterDelay:) withObject:block afterDelay:delay];
-}
-
-- (void)fireBlockAfterDelay:(void (^)(void))block {
-    block();
-}
-
-@end
-
 @interface BDKNotifyHUD ()
 
 @property (strong, nonatomic) UIView *backgroundView;
@@ -88,7 +75,8 @@
 }
 
 - (void)fadeAfter:(CGFloat)duration speed:(CGFloat)speed completion:(void (^)(void))completion {
-    [self performBlock:^{
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^{
         [UIView animateWithDuration:speed animations:^{
             [self setCurrentOpacity:0.0];
         } completion:^(BOOL finished) {
@@ -97,7 +85,7 @@
                 if (completion != nil) completion();
             }
         }];
-    } afterDelay:duration];
+    });
 }
 
 #pragma mark - Setters
