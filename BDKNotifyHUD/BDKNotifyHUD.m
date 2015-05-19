@@ -109,12 +109,21 @@
 }
 
 - (void)setImage:(UIImage *)image {
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    CGFloat currentOpacity = _iconView.alpha;
+    
+    UIImageView *imageView;
+    if ([_iconView isKindOfClass:[UIImageView class]]) {
+        imageView = (UIImageView*)_iconView;
+    } else {
+        imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    }
+    
     imageView.image = image;
     CGRect frame = imageView.frame;
     frame.size = image.size;
     imageView.frame = frame;
     imageView = (UIImageView *)[self configureViewForCentering:imageView];
+    imageView.alpha = currentOpacity;
     _iconView = imageView;
 }
 

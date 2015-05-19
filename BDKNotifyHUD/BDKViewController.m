@@ -114,7 +114,7 @@
         self.notificationText = @"This is a checkmark!";
     }
     
-    self.notify.image = [UIImage imageNamed:self.imageName];
+    [self.notify setImage:[UIImage imageNamed:self.imageName]];
     self.notify.text = self.notificationText;
 }
 
