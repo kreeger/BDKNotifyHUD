@@ -32,6 +32,14 @@
     return [[self alloc] initWithImage:image text:text];
 }
 
++ (id)notifyHUDWithView:(UIView *)view attributedText:(NSAttributedString *)attributedText {
+    return [[self alloc] initWithView:view attributedText:attributedText];
+}
+
++ (id)notifyHUDWithImage:(UIImage *)image attributedText:(NSAttributedString *)attributedText {
+    return [[self alloc] initWithImage:image attributedText:attributedText];
+}
+
 + (CGRect)defaultFrame {
     return CGRectMake(0, 0, kBDKNotifyHUDDefaultWidth, kBDKNotifyHUDDefaultHeight);
 }
@@ -49,6 +57,24 @@
     if ((self = [self initWithFrame:[self.class defaultFrame]])) {
         [self setImage:image];
         self.text = text;
+        [self setupView];
+    }
+    return self;
+}
+
+- (id)initWithView:(UIView *)view attributedText:(NSAttributedString *)attributedText {
+    if ((self = [self initWithFrame:[self.class defaultFrame]])) {
+        self.iconView = [self configureViewForCentering:view];
+        self.attributedText = attributedText;
+        [self setupView];
+    }
+    return self;
+}
+
+- (id)initWithImage:(UIImage *)image attributedText:(NSAttributedString *)attributedText {
+    if ((self = [self initWithFrame:[self.class defaultFrame]])) {
+        [self setImage:image];
+        self.attributedText = attributedText;
         [self setupView];
     }
     return self;
@@ -106,6 +132,15 @@
         [self adjustTextLabel:self.textLabel];
     }
     _text = text;
+}
+
+- (void)setAttributedText:(NSAttributedString *)attributedText
+{
+    if (_textLabel != nil) {
+        self.textLabel.attributedText = attributedText;
+        [self adjustTextLabel:self.textLabel];
+    }
+    _attributedText = attributedText;
 }
 
 - (void)setImage:(UIImage *)image {

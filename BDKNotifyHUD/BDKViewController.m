@@ -115,7 +115,15 @@
     }
     
     [self.notify setImage:[UIImage imageNamed:self.imageName]];
-    self.notify.text = self.notificationText;
+    
+    // randomly set text or attributed text
+    if (arc4random() % 2 == 0) {
+        self.notify.text = self.notificationText;
+    } else {
+        self.notify.attributedText = [[NSAttributedString alloc] initWithString:self.notificationText
+                                                                     attributes:@{NSForegroundColorAttributeName : [UIColor redColor],
+                                                                                  NSFontAttributeName            : [UIFont italicSystemFontOfSize:18.0f] }];
+    }
 }
 
 - (void)displayNotification {
